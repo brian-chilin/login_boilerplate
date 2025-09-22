@@ -1,0 +1,15 @@
+FROM python:3.13.7-slim-bookworm
+
+WORKDIR /app
+
+# Install system deps for psycopg2 and argon2
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpq-dev gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+
+# Gunicorn will run the Flask app
+CMD ["gunicorn", "-b", "0.0.0.0:80", "main:app"]
