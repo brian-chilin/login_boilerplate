@@ -3,7 +3,7 @@
 - index is special because it's static
 
 TODO: REFERENCE K8S DEPLOYMENT  
-TODO: document build/deployment process. maybe automate some stuff
+TODO: document build/deployment process. maybe automate some stuff  
 TODO: write about pre-reqs example database schema, k8s secret format, ..?
 
 #### index
