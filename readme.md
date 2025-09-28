@@ -3,6 +3,7 @@
 - only reading is supported.
 - index is special because it's static
 - TODO automate some deployment or build stuff like a single script to build/push all docker containers
+- TODO add to html template 'source code available here' mustache
 
 # Pre-requisites
 ## Database
@@ -33,15 +34,17 @@ Each of the source codes expects
   - `name` database
   - `user` {{CUSTOM_USERNAME}}
   - `password` {{CUSTOM_PASSWORD}}
-- `/etc/config/html/` to contain `html_template` (no extension) with the contents of https://github.com/brian-chilin/live-k8s/blob/main/pe410a/html_template
+- `/etc/config/html/` to contain `html_template` (no extension) with the contents of https://github.com/brian-chilin/live-k8s/blob/main/pe410a/html_template  
 ### For devcontainers:
-I spin up the devcontainer and with a shell inside manually make those files.  
+I spin up the devcontainer and with a shell inside manually make those files / variables.  
 ### For k8s I run  
 - `kubectl create configmap html-conf -n login-boilerplate --from-file=html_template`
   - where `html_template` is https://github.com/brian-chilin/live-k8s/blob/main/pe410a/html_template
 - `kubectl create secret generic database-conf -n login-boilerplate --from-env-file=secrets.env`
-  - where `secrets.env` is a plaintext file with the 5 k:v pairs mentioned above, each `key=value` on 1 line
+  - where `secrets.env` is a plaintext file with the 5 k:v pairs mentioned above, each `key=value` on 1 line  
 
+Some containers also expect environment variables to be set.  
+- See [django](####django)
 
 # Overview of Source Code
 
@@ -53,10 +56,15 @@ I spin up the devcontainer and with a shell inside manually make those files.
 #### aspnet
 
 #### django
+<!-- - requires environment variable `DJANGO_SECRET_KEY` to be set
+  - In devcontainers `export DJANGO_SECRET_KEY="value"` works
+  - TODO k8s? -->
+- psycopg2
 
 #### express
 
 #### fastapi
+- psycopg2
 
 #### flask
 - psycopg2
