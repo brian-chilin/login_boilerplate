@@ -13,6 +13,7 @@ MarkupSafe==3.0.2
 packaging==25.0
 psycopg2-binary==2.9.10
 pycparser==2.23
+pystache==0.6.8
 setuptools==75.6.0
 smmap==5.0.2
 Werkzeug==3.1.3
