@@ -38,16 +38,23 @@ def index():
 	try:
 		with conn.cursor() as cur:
 			cur.execute("SELECT * FROM users ORDER BY id;")
-			
-			table_contents = ""
-			for a, b, c, d in cur.fetchall():
-				table_contents += "<tr>"
-				table_contents += "<td>" + str(a) + "</td>"
-				table_contents += "<td>" + str(b) + "</td>"
-				table_contents += "<td>" + str(c) + "</td>"
-				table_contents += "<td>" + str(d if d else "NULL") + "</td>"
-				table_contents += "</tr>"
-			tp["TABLE_CONTENTS"] = table_contents
+			tp["TABLE_CONTENTS"] = "".join(
+				f"""<tr>
+						<td>{r_id}</td>
+						<td>{r_username}</td>
+						<td>{r_passhash}</td>
+						<td>{r_passraw if r_passraw else "NULL"}</td>
+					</tr>"""
+				for r_id, r_username, r_passhash, r_passraw in cur.fetchall()
+			)
+			# for a, b, c, d in cur.fetchall():
+			# 	table_contents += "<tr>"
+			# 	table_contents += "<td>" + str(a) + "</td>"
+			# 	table_contents += "<td>" + str(b) + "</td>"
+			# 	table_contents += "<td>" + str(c) + "</td>"
+			# 	table_contents += "<td>" + str(d if d else "NULL") + "</td>"
+			# 	table_contents += "</tr>"
+			# tp["TABLE_CONTENTS"] = table_contents
 
 			if request.method == "POST":
 				tp["FORM_USERNAME_VALUE"] = request.form['username']
