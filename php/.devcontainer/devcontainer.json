@@ -1,0 +1,7 @@
+{
+  "name": "PHP with PostgreSQL",
+  "build": {
+    "dockerfile": "dev_container"
+  },
+  "forwardPorts": [8080]
+}

@@ -1,0 +1,9 @@
+# Extend the official Dev Container PHP image
+FROM mcr.microsoft.com/devcontainers/php:1-8.4-bookworm
+
+# Install the PostgreSQL drivers (pdo_pgsql and pgsql)
+RUN apt-get update \
+ && apt-get install -y libpq-dev \
+ && docker-php-ext-install pdo_pgsql pgsql \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
