@@ -2,6 +2,7 @@
 - simple hash verification systems that all share one database
 - only reading is supported.
 - index is special because it's static
+- TODO fix all the xss attacks on the username input field (ex php)
 - TODO automate some deployment or build stuff like a single script to build/push all docker containers
 - TODO add to html template 'source code available here' mustache
 
@@ -46,7 +47,7 @@ I spin up the devcontainer and with a shell inside manually make those files / v
 Some containers also expect environment variables to be set.  
 - See [django](##django)
 
-# Overview of Source Code and Other Dev Instructions
+# Overview of Source Code and Other Devcontainer Instructions
 
 ## index
 - static html served in nginx for simplicity

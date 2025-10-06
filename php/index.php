@@ -76,7 +76,7 @@ try {
 } catch (PDOException $e) {
     error_log("DB connection failed: " . $e->getMessage());
     http_response_code(500);
-    echo "Server Error 6510<br>" . $j;
+    echo "Server Error 6510";
     exit(1);
 }
 
