@@ -53,6 +53,7 @@ Some containers also expect environment variables to be set.
 - static html served in nginx for simplicity
 
 ## actix-web
+**To Dev** `cargo run`
 
 ## aspnet
 
