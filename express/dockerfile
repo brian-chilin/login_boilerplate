@@ -1,0 +1,19 @@
+FROM node:20-slim
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json first (for caching)
+COPY sample_project/package*.json ./
+
+# Install only production dependencies
+RUN npm ci --only=production
+# Copy the rest of the app
+COPY sample_project/ ./
+
+# Expose the port your app listens on
+EXPOSE 3000
+
+# Set NODE_ENV to production
+ENV NODE_ENV=production
+
+# Run the app (entrypoint)
+CMD ["node", "./bin/www"]
