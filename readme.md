@@ -57,6 +57,7 @@ Some containers also expect environment variables to be set.
 
 ## aspnet
 - `dotnet run`
+- admittedly not dotnet-like
 - fixed to port 8080; no https
 
 ## django
