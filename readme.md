@@ -56,6 +56,8 @@ Some containers also expect environment variables to be set.
 **To Dev** `cargo run`
 
 ## aspnet
+- `dotnet run`
+- fixed to port 8080; no https
 
 ## django
 <!-- - requires environment variable `DJANGO_SECRET_KEY` to be set
@@ -64,6 +66,7 @@ Some containers also expect environment variables to be set.
 - psycopg2
 
 ## express
+- `npm start`
 
 ## fastapi
 **To Dev** `uvicorn main:app --host 0.0.0.0 --port 80 --workers 2`
