@@ -1,0 +1,23 @@
+FROM ruby:3.2-slim AS base
+RUN apt-get update -qq && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+ && rm -rf /var/lib/apt/lists/*
+
+# set environment
+ENV RACK_ENV=production \
+    APP_HOME=/app
+WORKDIR $APP_HOME
+
+# install gems separately for caching
+COPY Gemfile Gemfile.lock ./
+RUN bundle config set deployment 'true' \
+ && bundle config set without 'development test' \
+ && bundle install --jobs 4 --retry 3
+
+COPY . .
+RUN useradd -m appuser
+USER appuser
+EXPOSE 80
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb", "config.ru"]
+
